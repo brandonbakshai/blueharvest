@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html ng-app="home">
+    <head>
+        <title>title</title>
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' 
+            rel='stylesheet' type='text/css'>
+        <link
+        href='https://fonts.googleapis.com/css?family=Playfair+Display:900'
+        rel='stylesheet' type='text/css'>
+        <style>
+            body, html {
+                margin: 0;
+                overflow: hidden;
+            }
+
+            #overlay-back {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 88%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6); 
+                /*
+                opacity: 0.60;
+                filter: alpha(opacity=60);
+                */
+                z-index: 5;
+                display: none;
+            }
+
+            #containMe {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                /*
+                opacity: 0.60;
+                filter: alpha(opacity=60);
+                */
+                z-index: -1;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+            }
+
+            #overlay { 
+                height: 65%;
+                width: 70%;;
+                margin: 0;
+                background: #FFFFFF;
+                z-index: 10;
+                display: none;
+                text-align: center;
+            } 
+
+            .clz_0 {
+                height: 30px;
+                margin-top: 10px;
+                padding-left: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            .clz_1 {
+                font-size: 13px;
+                height: 24px;
+                margin-top: 6px;
+                padding-left: 15px;
+                font-weight: 10;
+                font-style: normal;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            .clz_2 {
+                font-size: 12px;
+                height: 20px;
+                margin-top: 6px;
+                padding-left: 20px;
+                font-weight: 100;
+                font-style: normal;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            #tile_title {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 25%;
+                width: 100%;
+                background-color: #778899;
+            }
+
+            .container {
+                display: none;
+            }
+
+            /*
+            .navItem {
+                height: 30px;
+                margin-top: 10px;
+                padding-left: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }*/
+
+            #nav {
+                position: absolute;
+                padding-top: 15px;
+                width: 12%;
+                height: 15%;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                background-color: #F2CBD3;
+                background-color: #FF7F7F;
+                text-align: center;
+                font-family: 'Playfair Display', serif;
+                font-size: 60px;
+                transition: height 500ms;
+                -moz-transition: height 500ms;
+                -webkit-transition: height 500ms;
+                z-index: 10;
+            }
+
+            #nav:hover {
+                height: 100%;
+                /*z-index: 10;*/
+            }
+
+            #navis {
+                margin-bottom: 20px;
+            }
+
+            #naves {
+                /*border-top: 1px solid #000000;*/
+            }
+
+            #naves:hover {
+                background-color: #dedede;
+            }
+
+
+            #left {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 12%;
+                height: 85%;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                text-align: left;
+                font-family: "Lato", serif;
+                background-color: #aabbcc;
+                background-color: #778899;
+                color: #FFFFFF;
+            }
+
+            #right {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                width: 88%;
+                background-image: url('img.png');
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-content: flex-start;
+            }
+
+            #tile {
+                border-style: solid;
+                border-color: #dedede;
+                border-color: #888A8C;
+                float: left;
+                width: 30%;
+                height: 100%;
+                background-color: #778899;
+                background-color: #E3E7EA;
+                margin: 20px 20px 20px 20px;
+            }
+
+
+            .test_tile {
+                float: left;
+                /*
+                border-style: solid;
+                border-color: #dedede;
+                border-color: #888A8C;
+                */
+                width: 29%;
+                height: 20%;
+                background-color: #778899;
+                background-color: #E3E7EA;
+                background-color: #FFFFFF;
+                box-shadow: 2px 2px 3px #888888;
+                margin: 20px 20px 20px 20px;
+                text-align: center;
+                font-family: 'Playfair Display', serif;
+            }
+
+            .test_tile_title {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 25%;
+                width: 100%;
+                background-color: #778899;
+                color: #FFFFFF;
+            }
+
+            .row {
+                height: 20%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 60px;
+            }
+
+            *, *:before, *:after {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        </style>
+        <script>
+            $( document ).ready(function() {
+                function fetchData() {
+                    $.ajax({
+                        url: 'http://uinames.com/api/?amount=24',
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            var openDivRight = '<div id="right">';
+                            var openDivTile = '<div class="test_tile">';
+                            var openDivTitle = '<div class="test_tile_title">';
+                            var closeDiv = '</div>';
+                            var eachTile = [];
+
+                            // iterate over all 24 elements
+                            for (elem in data) {
+                                var iter = data[elem]
+                                var temp = [];
+
+                                // create tile for user
+                                temp.push(openDivTile);
+                                temp.push(openDivTitle);
+                                temp.push(iter["name"]);
+                                temp.push(closeDiv);
+                                temp.push(closeDiv);
+
+                                console.log(temp.join(''));
+                                eachTile.push(temp.join(''));
+                            }
+                            // document.getElementById("right").innerHTML += eachTile.join('');
+                            $('#right').append(eachTile.join(''));
+
+                            $('.test_tile').click(function() {
+                                $('#overlay, #overlay-back').fadeIn(250, function() {
+                                    console.log("This executed")
+                                }); 
+                            });
+
+                            $('#overlay-back').click(function(e) {
+                                if (e.target.id != 'overlay') {
+                                    $('#overlay, #overlay-back').fadeOut(250, function() {
+                                        console.log("This executed")
+                                    }); 
+                                }
+                            });
+                        }
+                    });
+                }
+
+
+                fetchData();
+
+
+                $('#nav').hover(function() {
+                    console.log("I am hovering in");
+                    $('#findMe.container').slideToggle(50);
+                }, function() {
+                    console.log("I am hovering out");
+                    $('#findMe.container').slideToggle(50);
+                });
+
+                $('#right').bind('scroll', function(){
+                    if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight){
+                        fetchData();
+                    }
+                });
+
+                $( "#nuv" ).hover(function() {
+                    console.log("I am hovering in");
+                    $existing = $(this).html();
+                    $insert = 
+                    '<div id="About" ng-mouseenter="myData.mouseEnter($event)">About</div>';
+                    
+                    $(this).html($existing + $insert);
+
+                    console.log($(this).html());
+
+                    }, function() {
+                        console.log("I am hovering out")
+                        console.log($(this).html());
+                        $(this).html('<div id="BH" ng-mouseenter="myData.mouseEnter($event)">BH</div>');
+                        console.log($(this).html());
+                    
+                });
+            }); 
+        </script>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body ng-controller="HomeController as home">
+        <!--div id="nav" ng-mouseenter="myData.mouseEnterNav($event)"
+        ng-mouseleave="myData.mouseLeaveNav($event)"-->
+        <div id="nav">
+            <div navigation></div>    
+        </div>
+        <div id="left">
+            <div filters></div>
+        </div>
+        <div id="overlay-back">
+            <div id="containMe">
+                <div id="overlay"></div>
+            </div>
+        </div>
+        <div id="right">
+        </div>
+    
+</body>
+</html>
