@@ -46,8 +46,64 @@
                 align-items: center;
             }
 
+            .bountyTitle {
+                position: relative;
+                float: top;
+                width: 100%;
+                height: 30px;
+                background: #FFFFFF;
+                font-family: 'Playfair Display', serif;
+                padding-top: 3px;
+            }
+
+            .bountyNav {
+                position: relative;
+                float: left;
+                width: 12%;
+                height: 100%;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                text-align: left;
+                font-family: 'Playfair Display', serif;
+                background-color: #aabbcc;
+                background-color: #778899;
+                color: #FFFFFF;
+            }
+
+            .bountyRight {
+                position: relative;
+                float: right;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                width: 88%;
+                height: 100%;
+                /*
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-content: flex-start;
+                */
+            }
+
+            .bountyStats {
+                position: relative;
+                float: top;
+                width: 100%;
+                height: 30%;
+                background: #aabbcc;
+            }
+
+            .bountyDescrip {
+                position: relative;
+                float: bottom;
+                width: 100%;
+                height: 70%;
+                background: #ccbbaa;
+            }
+
             #overlay { 
-                height: 95%;
+                height: 90%;
                 width: 90%;;
                 margin: 0;
                 background: #FFFFFF;
@@ -154,6 +210,7 @@
                 overflow-x: hidden;
                 text-align: left;
                 font-family: "Lato", serif;
+                font-family: 'Playfair Display', serif;
                 background-color: #aabbcc;
                 background-color: #778899;
                 color: #FFFFFF;
@@ -234,6 +291,9 @@
                 function fetchData() {
                     $.ajax({
                         url: 'http://uinames.com/api/?amount=24',
+                        /*
+                        url: './testing.json',
+                        */
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
@@ -332,7 +392,15 @@
         <div id="overlay-back">
             <div id="containMe">
                 <div id="overlay">
-                    <div class="test_tile_title"></div>
+                    <div class="bountyNav"></div>
+                    <div class="bountyRight">
+                        <div class="bountyStats">
+                            <div class="bountyTitle">Statistics</div>
+                        </div>
+                        <div class="bountyDescrip">
+                            <div class="bountyTitle">Description</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
