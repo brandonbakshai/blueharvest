@@ -288,6 +288,8 @@
         </style>
         <script>
             $( document ).ready(function() {
+                // function to fetch data from the server
+                // in json form and populate tiles with the data
                 function fetchData() {
                     $.ajax({
                         url: 'http://uinames.com/api/?amount=24',
@@ -309,7 +311,7 @@
                                 var iter = data[elem]
                                 var temp = [];
 
-                                // create tile for user
+                                // create tile for each item
                                 temp.push(openDivTile);
                                 temp.push(openDivTitle);
                                 temp.push(iter["name"]);
@@ -319,15 +321,23 @@
                                 console.log(temp.join(''));
                                 eachTile.push(temp.join(''));
                             }
-                            // document.getElementById("right").innerHTML += eachTile.join('');
+                            // append all the tnew tiles to the set of existing
+                            // tiles
                             $('#right').append(eachTile.join(''));
 
+                            // add the click listener for the bounty tiles,
+                            // so that on click the larger more descriptive
+                            // bounty tile will popup
                             $('.test_tile').click(function() {
                                 $('#overlay, #overlay-back').fadeIn(250, function() {
+                                    // callback function for testing
                                     console.log("This executed")
                                 }); 
                             });
 
+                            // add click listener to the darkened background
+                            // will fadeOut the descriptive bounty module and go
+                            // back to the rows of tiles
                             $('#overlay-back').click(function(e) {
                                 if (e.target.id != 'overlay') {
                                     $('#overlay, #overlay-back').fadeOut(250, function() {
@@ -342,12 +352,10 @@
 
                 fetchData();
 
-
+                // animation for the red dropdown navbar
                 $('#nav').hover(function() {
-                    console.log("I am hovering in");
                     $('#findMe.container').slideToggle(50);
                 }, function() {
-                    console.log("I am hovering out");
                     $('#findMe.container').slideToggle(50);
                 });
 
@@ -357,6 +365,7 @@
                     }
                 });
 
+                /*
                 $( "#nuv" ).hover(function() {
                     console.log("I am hovering in");
                     $existing = $(this).html();
@@ -374,6 +383,7 @@
                         console.log($(this).html());
                     
                 });
+                */
             }); 
         </script>
         <meta charset="UTF-8">
@@ -381,14 +391,15 @@
         <script type="text/javascript" src="app.js"></script>
     </head>
     <body ng-controller="HomeController as home">
-        <!--div id="nav" ng-mouseenter="myData.mouseEnterNav($event)"
-        ng-mouseleave="myData.mouseLeaveNav($event)"-->
+        <!-- this is the red dropdown navbar -->
         <div id="nav">
             <div navigation></div>    
         </div>
+        <!-- this is the blue-grey filtering menu on the left -->
         <div id="left">
             <div filters></div>
         </div>
+        <!-- this is the bounty module which pops up on click of a tile -->
         <div id="overlay-back">
             <div id="containMe">
                 <div id="overlay">
@@ -404,6 +415,7 @@
                 </div>
             </div>
         </div>
+        <!-- this is the container for all of the bounty tiles -->
         <div id="right">
         </div>
     
