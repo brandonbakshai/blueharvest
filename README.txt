@@ -40,3 +40,27 @@ particular bounties/projects. We can also put in another little menu bar on the
 left of that popup similar to what is there now for the category choosing.
 The left navbar consists of a dropdown on hover main menu and below that an
 expanding/collapsing menu for sorting of bounties by category/type. 
+
+
+Bounty Module
+    Navigation
+        projects
+        sort by
+            most viewed
+            most contibutors
+            most upvoted
+    Statistics
+        # total contributors
+        # projects
+        # upvotes
+        # downvotes
+        filters
+        languages
+
+
+    Description
+
+Project Module
+    Navigation (same as above)
+    Statistics
+        contributors
