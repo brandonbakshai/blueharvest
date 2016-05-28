@@ -1,0 +1,42 @@
+client
+    |
+** consistent no failure **
+    |
+herd engine ->
+                sable
+                s3
+                // ddb
+
+if sable fails, herd developers have to do emergency deployment of new code,
+    makes all data stored in s3 instead of sable
+
+**
+always querying the data storage types to check health
+and if health is low or service down, then dynamically switch to other 
+storage type gradually
+**
+
+<graph id="uhsdfi">
+    <state name="A">
+        <arc
+            ...
+
+
+    <state name="B">
+        <arc
+
+
+
+</graph>
+
+amazon customer order team
+    A ext customer clicks order
+        arc
+    B verify credit card
+        arc
+    C verify address
+        arc
+    ...
+    M initiate shipping
+        arc
+    N send email

@@ -5,8 +5,8 @@
     // what one builds in angular are modules, like python
     var app = angular.module('home', []);
     app.controller('HomeController', function($scope) {
-        this.navBar = navBar;
-        this.aggregated = aggregated;
+        // this.navBar = navBar;
+        // this.aggregated = aggregated;
         $scope.myData = {};
 
         // mouseEnter listener to highlight div
@@ -86,6 +86,7 @@
     });
 
     // this is creating another html tag "navigation" which is used 
+    // for the red bar
     app.directive('navigation', function() {
         return {
             // see below          
@@ -93,8 +94,16 @@
         };
     });
 
-    // -------------------------------------------------------
 
+    // this is creating another html tag "popup" 
+    app.directive('popup', function() {
+        return {
+            // see below          
+            template: popStr.join('')
+        };
+    });
+
+    // -------------------------------------------------------
 
 
     // ****BUILDING THE NAVIGATION PART OF THE SITE, THE RED DROPDOWN MENU****
@@ -215,6 +224,66 @@
     beginNested(arr);
 
     // ------------------------------------------------------------------------
+
+    // ****BUILDING THE POPUP DIV, WHICH IS VISIBLE AFTER CLICKING ON A BOUNTY TILE****
+
+    var popStr = [];
+    var openContainMe = '<div id="containMe">';
+    var openOverlay = '<div id="overlay">';
+    var openBountyNav = '<div class="bountyNav">';
+    var openBountyRight = '<div class="bountyRight">';
+    var openBountyStats = '<div class="bountyStats">';
+    var openBountyTitle = '<div class="bountyTitle">';
+    var openDescrip = '<div class="bountyDescrip">';
+    var closeDiv = '</div>';
+
+    // this function makes use of the navigation Ar
+    function buildPopup() {
+        popStr.push(openContainMe);
+            popStr.push(openOverlay);
+
+                popStr.push(openBountyNav);
+                popStr.push(closeDiv);
+
+                popStr.push(openBountyRight);
+
+                    popStr.push(openBountyStats);
+                        popStr.push(openBountyTitle);
+                        popStr.push(closeDiv);
+                    popStr.push(closeDiv);
+
+                    popStr.push(openDescrip);
+                        popStr.push(openBountyTitle);
+                        popStr.push(closeDiv);
+                    popStr.push(closeDiv);
+
+                popStr.push(closeDiv);
+
+            popStr.push(closeDiv);
+        popStr.push(closeDiv);
+    }
+    
+    // build the div we want, will be stored in "popStr"
+    buildPopup();
+
+    /*
+            <div id="containMe">
+                <div id="overlay">
+                    <div class="bountyNav"></div>
+                    <div class="bountyRight">
+                        <div class="bountyStats">
+                            <div class="bountyTitle">Statistics</div>
+                        </div>
+                        <div class="bountyDescrip">
+                            <div class="bountyTitle">Description</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    */
+
+    // -------------------------------------------------------------------------
+
 
     /* 
     var aggregated = [];

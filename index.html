@@ -8,10 +8,81 @@
         <link
         href='https://fonts.googleapis.com/css?family=Playfair+Display:900'
         rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display'
+        rel='stylesheet' type='text/css'>
         <style>
             body, html {
                 margin: 0;
                 overflow: hidden;
+            }
+
+            .openDivTag {
+                height: 53%;
+                width: 100%;
+                float: top;
+                padding: 10px;
+                text-align: left;
+                font-size: 14px;
+                font-style: thin;
+                font-weight: 200px;
+                border-bottom-style: solid;
+                border-bottom-width: thin;
+                border-bottom-color: #000000;
+            }
+
+            .openDivDescrip {
+                
+                height: 22%;
+                width: 100%;
+                float: bottom;
+                padding: 7px;
+                text-align: left;
+                font-size: 14px;
+                font-weight: 200px;
+                font-style: thin;
+                overflow: hidden;
+                /*
+                border-top-style: solid;
+                border-top-width: thin;
+                border-top-color: #000000;
+                */
+            }
+
+            .openDivProj {
+                height: 100%;
+                width: 25%;
+                float: left;
+                padding-top: 5px;
+                border-right-style: solid;
+                border-right-width: thin;
+                border-right-color: #FFFFFF;
+            }
+
+            .openDivContr {
+                height: 100%;
+                width: 25%;
+                float: left;
+                padding-top: 5px;
+                border-right-style: solid;
+                border-right-width: thin;
+                border-right-color: #FFFFFF;
+            }
+
+            .openDivUp {
+                height: 100%;
+                width: 25%;
+                float: left;
+                padding-top: 5px;
+                border-right-style: solid;
+                border-right-width: thin;
+                border-right-color: #FFFFFF;
+            }
+
+            .openDivDown {
+                height: 100%;
+                width: 25%;
+                float: left;
+                padding-top: 5px;
             }
 
             #overlay-back {
@@ -303,8 +374,25 @@
                             var openDivRight = '<div id="right">';
                             var openDivTile = '<div class="test_tile">';
                             var openDivTitle = '<div class="test_tile_title">';
+
+                            var openDivProj = '<div class="openDivProj">';
+                            var openDivContr = '<div class="openDivContr">';
+                            var openDivUp = '<div class="openDivUp">';
+                            var openDivDown = '<div class="openDivDown">';
+
+                            var openDivTag = '<div class="openDivTag">';
+                            var openDivDescrip = '<div class="openDivDescrip">';
+
                             var closeDiv = '</div>';
                             var eachTile = [];
+
+                            // dummy variables to be passed by json
+                            var numProj = 0;
+                            var numContr = 0;
+                            var numUp = 0;
+                            var numDown = 0;
+                            var tag = "A web app to connect people with ideas to those with the technical ability to develop them."
+                            var authors = "Ishan Guru, Brandon Bakhshai";
 
                             // iterate over all 24 elements
                             for (elem in data) {
@@ -314,14 +402,47 @@
                                 // create tile for each item
                                 temp.push(openDivTile);
                                 temp.push(openDivTitle);
-                                temp.push(iter["name"]);
+
+                                temp.push(openDivProj);
+                                temp.push("proj: ");
+                                temp.push(numProj);
                                 temp.push(closeDiv);
+
+                                temp.push(openDivContr);
+                                temp.push("contr: ");
+                                temp.push(numContr);
+                                temp.push(closeDiv);
+
+                                temp.push(openDivUp);
+                                temp.push("up: ");
+                                temp.push(numUp);
+                                temp.push(closeDiv);
+
+                                temp.push(openDivDown);
+                                temp.push("down: ");
+                                temp.push(numDown);
+                                temp.push(closeDiv);
+
+
+                                temp.push(closeDiv);
+
+                                temp.push(openDivTag);
+                                temp.push("Tagline: ");
+                                // temp.push(iter["name"]);
+                                temp.push(tag);
+                                temp.push(closeDiv);
+
+                                temp.push(openDivDescrip);
+                                temp.push("Author(s): ");
+                                temp.push(authors);
+                                temp.push(closeDiv);
+
                                 temp.push(closeDiv);
 
                                 console.log(temp.join(''));
                                 eachTile.push(temp.join(''));
                             }
-                            // append all the tnew tiles to the set of existing
+                            // append all the new tiles to the set of existing
                             // tiles
                             $('#right').append(eachTile.join(''));
 
@@ -401,19 +522,7 @@
         </div>
         <!-- this is the bounty module which pops up on click of a tile -->
         <div id="overlay-back">
-            <div id="containMe">
-                <div id="overlay">
-                    <div class="bountyNav"></div>
-                    <div class="bountyRight">
-                        <div class="bountyStats">
-                            <div class="bountyTitle">Statistics</div>
-                        </div>
-                        <div class="bountyDescrip">
-                            <div class="bountyTitle">Description</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div popup></div>
         </div>
         <!-- this is the container for all of the bounty tiles -->
         <div id="right">
