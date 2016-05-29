@@ -234,8 +234,19 @@
     var openBountyRight = '<div class="bountyRight">';
     var openBountyStats = '<div class="bountyStats">';
     var openBountyTitle = '<div class="bountyTitle">';
+    var openBountyAuthors = '<div class="bountyAuthors">';
     var openDescrip = '<div class="bountyDescrip">';
+    var openStatModule = '<div class="statModule">';
+    var openDescripModule1 = '<div class="descripModule1">';
+    var openDescripModule2 = '<div class="descripModule2">';
+    var openStatItem = '<div class="statItem">';
+    var openStatTitle = '<div class="statTitle">';
+    var openStatTitleItem = '<div class="statTitleItem">';
     var closeDiv = '</div>';
+    var tagline = "tagline: A web app to connect people with ideas to those with the technical ability to develop them."
+    var descrip = "";
+    var stats = ["projects: 0", "contributors: 0", "upvotes: 0", "downvotes: 0", "views: 0", "category: programming", "types: civil"];
+    var langs = ["languages", "JavaScript", "Python"];
 
     // this function makes use of the navigation Ar
     function buildPopup() {
@@ -249,12 +260,48 @@
 
                     popStr.push(openBountyStats);
                         popStr.push(openBountyTitle);
+                        popStr.push("Bounty Statistics");
                         popStr.push(closeDiv);
+
+                        for (var i = 0; i < 3; i++) {
+                            popStr.push(openStatModule);
+                            for (var j = 0; j < 5; j++) {
+                                if (5*i+j < 10) {
+                                    popStr.push(openStatItem);
+                                } else if (5*i+j === 10) {
+                                    popStr.push(openStatTitle);
+                                } else {
+                                    popStr.push(openStatTitleItem);
+                                }
+                                if ( 5*i+j < stats.length ) {
+                                    popStr.push(stats[5*i+j]);
+                                } 
+                                if (10+langs.length > 5*i+j >= 10) {
+                                    popStr.push(langs[5*i+j - 10]); 
+                                }
+                                popStr.push(closeDiv);
+                            }
+                            popStr.push(closeDiv);
+                        }
+
                     popStr.push(closeDiv);
 
                     popStr.push(openDescrip);
                         popStr.push(openBountyTitle);
+                        popStr.push("About");
                         popStr.push(closeDiv);
+
+                        popStr.push(openDescripModule1);
+                        popStr.push(tagline);
+                        popStr.push(closeDiv);
+
+                        popStr.push(openDescripModule2);
+                        popStr.push(closeDiv);
+
+                        popStr.push(openBountyAuthors);
+                        popStr.push("Author(s): Ishan Guru, Brandon Bakhshai");
+                        popStr.push(closeDiv);
+
                     popStr.push(closeDiv);
 
                 popStr.push(closeDiv);
