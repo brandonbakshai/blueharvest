@@ -1,0 +1,447 @@
+body, html {
+    margin: 0;
+    overflow: hidden;
+}
+
+input {
+    height: 30px;
+    margin-left: 10px;
+    width: 80%;
+    margin-top: 15px;
+}
+
+.statTitle {
+    float: left;
+    height: 20%;
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    color: #000000;
+    text-align: center;
+    padding: 7px;
+    background-color: #aabbcc;
+}
+
+.statTitleItem {
+    float: left;
+    height: 20%;
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    color: #000000;
+    text-align: center;
+    padding: 7px;
+    background-color: #bbccdd;
+}
+
+.statItem {
+    float: left;
+    height: 20%;
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    color: #000000;
+    text-align: center;
+    padding: 7px;
+}
+
+.descripModule1 {
+    float: top;
+    height: calc(17% - 30px);
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    text-align: left;
+    padding: 15px;
+    text-align: center;
+}
+
+.descripModule2 {
+    float: top;
+    height: calc(83% - 30px);
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    text-align: left;
+    padding: 7px;
+}
+
+.statModule {
+    float: left;
+    height: calc(100% - 30px);
+    width: 33.33333%;
+    color: #aabbcc;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+.openDivTag {
+    height: 53%;
+    width: 100%;
+    float: top;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    font-style: thin;
+    font-weight: 200px;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #000000;
+}
+
+.openDivDescrip {
+    
+    height: 22%;
+    width: 100%;
+    float: bottom;
+    padding: 7px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 200px;
+    font-style: thin;
+    overflow: hidden;
+    /*
+    border-top-style: solid;
+    border-top-width: thin;
+    border-top-color: #000000;
+    */
+}
+
+.openDivProj {
+    height: 100%;
+    width: 25%;
+    float: left;
+    padding-top: 5px;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: #FFFFFF;
+}
+
+.openDivContr {
+    height: 100%;
+    width: 25%;
+    float: left;
+    padding-top: 5px;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: #FFFFFF;
+}
+
+.openDivUp {
+    height: 100%;
+    width: 25%;
+    float: left;
+    padding-top: 5px;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: #FFFFFF;
+}
+
+.openDivDown {
+    height: 100%;
+    width: 25%;
+    float: left;
+    padding-top: 5px;
+}
+
+#overlay-back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 88%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    /*
+    opacity: 0.60;
+    filter: alpha(opacity=60);
+    */
+    z-index: 5;
+    display: none;
+}
+
+#containMe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    /*
+    opacity: 0.60;
+    filter: alpha(opacity=60);
+    */
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.bountyTitle {
+    position: relative;
+    float: top;
+    width: 100%;
+    height: 30px;
+    background: #FFFFFF;
+    font-family: 'Playfair Display', serif;
+    padding-top: 3px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    background-color: #778899;
+    color: #FFFFFF;
+}
+
+.bountyAuthors {
+    float: bottom;
+    width: 100%;
+    height: 30px;
+    background: #FFFFFF;
+    font-family: 'Playfair Display', serif;
+    padding-top: 3px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+    color: #000000;
+}
+
+.bountyNav {
+    position: relative;
+    float: left;
+    width: 12%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    background-color: #aabbcc;
+    background-color: #778899;
+}
+
+.bountyRight {
+    position: relative;
+    float: right;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 88%;
+    height: 100%;
+    /*
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    */
+}
+
+.bountyStats {
+    position: relative;
+    float: top;
+    width: 100%;
+    height: 30%;
+    background: #aabbcc;
+    background: #FFFFFF;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+.bountyDescrip {
+    position: relative;
+    float: bottom;
+    width: 100%;
+    height: 70%;
+    background: #ccbbaa;
+    background: #FFFFFF;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+#overlay { 
+    height: 90%;
+    width: 90%;;
+    margin: 0;
+    background: #FFFFFF;
+    z-index: 10;
+    display: none;
+    text-align: center;
+} 
+
+.bounty_clz_0 {
+    font-size: 16px;
+    padding: 5px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+.bounty_clz_1 {
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 15px;
+    color: #FFFFFF;
+}
+
+.clz_0 {
+    height: 30px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.clz_1 {
+    font-size: 13px;
+    height: 24px;
+    margin-top: 6px;
+    padding-left: 15px;
+    font-weight: 10;
+    font-style: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.clz_2 {
+    font-size: 12px;
+    height: 20px;
+    margin-top: 6px;
+    padding-left: 20px;
+    font-weight: 100;
+    font-style: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*
+#tile_title {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 25%;
+    width: 100%;
+    background-color: #778899;
+}
+*/
+
+.container {
+    display: none;
+}
+
+#nav {
+    position: absolute;
+    padding-top: 15px;
+    width: 12%;
+    height: 15%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #F2CBD3;
+    background-color: #FF7F7F;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    transition: height 500ms;
+    -moz-transition: height 500ms;
+    -webkit-transition: height 500ms;
+}
+
+#nav:hover {
+    height: 100%;
+    z-index: 10;
+}
+
+#navis {
+    margin-bottom: 20px;
+}
+
+#naves {
+    /*border-top: 1px solid #000000;*/
+}
+
+#naves:hover {
+    background-color: #dedede;
+}
+
+
+#left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 12%;
+    height: 85%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+    font-family: "Lato", serif;
+    font-family: 'Playfair Display', serif;
+    background-color: #aabbcc;
+    background-color: #778899;
+    color: #FFFFFF;
+}
+
+#right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 88%;
+    background-image: url('../images/img.png');
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+#tile {
+    border-style: solid;
+    border-color: #dedede;
+    border-color: #888A8C;
+    float: left;
+    width: 30%;
+    height: 100%;
+    background-color: #778899;
+    background-color: #E3E7EA;
+    margin: 20px 20px 20px 20px;
+}
+
+.test_tile {
+    float: left;
+    /*
+    border-style: solid;
+    border-color: #dedede;
+    border-color: #888A8C;
+    */
+    width: 29%;
+    height: 20%;
+    background-color: #778899;
+    background-color: #E3E7EA;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 3px #888888;
+    margin: 20px 20px 20px 20px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.test_tile_title {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 25%;
+    width: 100%;
+    background-color: #778899;
+    color: #FFFFFF;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}

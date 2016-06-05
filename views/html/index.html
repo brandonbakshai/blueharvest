@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="home">
+    <head>
+        <title>title</title>
+        <link rel="stylesheet" type="text/css" href="views/css/style.css">
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="controllers/listeners/navbarListeners.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="views/directives/popup.js"></script>
+        <script type="text/javascript" src="views/directives/navbar.js"></script>
+        <script type="text/javascript" src="views/directives/filters.js"></script>
+        <script type="text/javascript" src="controllers/infiniteScroll.js"></script>
+        <meta charset="UTF-8">
+    </head>
+    <body ng-controller="HomeController as home">
+        <!-- this is the red dropdown navbar -->
+        <div id="nav">
+            <div navigation></div>    
+        </div>
+        <!-- this is the blue-grey filtering menu on the left -->
+        <div id="left">
+            <div filters></div>
+            <input type="text" placeholder="search" ng-model="search">
+        </div>
+        <!-- this is the bounty module which pops up on click of a tile -->
+        <div id="overlay-back">
+            <div popup></div>
+        </div>
+        <!-- this is the container for all of the bounty tiles -->
+        <div id="right" ng-controller="tileController">
+            <div ng-repeat="bounty in bounties | filter:search" class="test_tile">
+                <div class="test_tile_title">
+                    <div class="openDivProj">proj: {{ bounty.stats.proj }}</div>
+                    <div class="openDivContr">contr: {{ bounty.stats.contr }}</div>
+                    <div class="openDivUp">up: {{ bounty.stats.up }}</div>
+                    <div class="openDivDown">down: {{bounty.stats.down }}</div>
+                </div>
+                <div class="openDivTag">{{ bounty.tagline }}</div>
+                <div class="openDivDescrip">{{ bounty.authors.join(', ') }}</div>
+            </div>
+        </div>
+    
+</body>
+</html>
