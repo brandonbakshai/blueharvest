@@ -135,6 +135,14 @@ app.get('/bounties', function(req, res, next) {
     });
 })
 
+app.get('/controllers/listeners/bountyListener.js', function(req, res, next) {
+    try {
+        res.sendFile(__dirname + '/controllers/listeners/bountyListener.js')
+    } catch (e) {
+        next(e)
+    }
+})
+
 app.listen(process.env.PORT || 3000, function () {
     console.log('Listening on http://localhost:' + (process.env.PORT || 3000));
 })

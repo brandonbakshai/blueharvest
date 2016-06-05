@@ -15,6 +15,8 @@
         <script type="text/javascript" src="views/directives/navbar.js"></script>
         <script type="text/javascript" src="views/directives/filters.js"></script>
         <script type="text/javascript" src="controllers/infiniteScroll.js"></script>
+        <!--script type="text/javascript"
+        src="controllers/listeners/bountyListener.js"></script-->
         <meta charset="UTF-8">
     </head>
     <body ng-controller="HomeController as home">
@@ -38,7 +40,7 @@
                     <div class="openDivProj">proj: {{ bounty.stats.proj }}</div>
                     <div class="openDivContr">contr: {{ bounty.stats.contr }}</div>
                     <div class="openDivUp">up: {{ bounty.stats.up }}</div>
-                    <div class="openDivDown">down: {{bounty.stats.down }}</div>
+                    <div class="openDivDown">down: {{ bounty.stats.down }}</div>
                 </div>
                 <div class="openDivTag">{{ bounty.tagline }}</div>
                 <div class="openDivDescrip">{{ bounty.authors.join(', ') }}</div>
