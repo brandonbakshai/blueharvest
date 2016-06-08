@@ -87,6 +87,9 @@ started researching the MEAN stack and the MVC design paradigm.
 Trying to decide now between MEAN and MERN (replacing angular with react and
 flux)
 
+Let's go with MEAN, I've already learned a good amount of Angular and more
+importantly it seems like a powerful, flexible, and scalable framework. 
+
 
 rough design notes (not really complete):
 Bounty Module
