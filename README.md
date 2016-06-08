@@ -3,6 +3,15 @@ BLUE HARVEST (temporary name)
 Ishan Guru
 Brandon Bakhshai
 
+TODO
+    design models
+        need to decide how to securely store passwords
+            bcrypt: https://www.usenix.org/legacy/events/usenix99/provos/provos_html/
+    design more of the front end
+
+
+
+
 BACKEND
     we want to do this right, we want the best tech right now
     so we minimize buildup of technical debt. We need a scalable database,

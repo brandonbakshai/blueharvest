@@ -1,61 +1,100 @@
 var mongoose = require('mongoose'),
-    bcrypt = require('bcryptjs'),
-    dbHost = 'mongodb://localhost:27017/data/db';
+    bcrypt = require('bcryptjs');
 
-mongoose.connect(dbHost);
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var userSchema = new Schema(
+{
     name: String,
     hashedPassword: String,
     postsCreated: Array,
     postsContributed: Array,
 });
 
-userSchema.methods.hashAndStorePassword = hashAndStorePassword(err, password);
+userSchema.methods.hashAndStorePassword = hashAndStorePassword;
 
-function hashAndStorePassword(err, password) {
-    if (err) {
-        console.log("ERROR: " + err);
-        return ;
-    } 
-    bcrypt.hash(password, 8, hashCallBack(err, hash));
-};
-
-function hashCallback(err, hash) {
-    if (err) {
-        console.log("ERROR: " + err);
-        return ;
-    } 
-    this.hashedPassword = hash;
-    this.save(saveCallback(err));
-}
-
-function saveCallback(err) {
-    if (err) {
-        console.log("ERROR: " + err);
-        return ;
-    }
-}
-
-userSchema.methods.verifyPassword = function verifyPassword(err, email, password) {
-    if (err) {
-        console.log("ERROR: " + err);
-        return ;
-    } 
-
-    bcrypt.compare(password, 8, function(err, hash) {
-        if (err) {
+function hashAndStorePassword(password) 
+{
+    var curScope = this;
+    bcrypt.hash(password, 8, function(err, hash) 
+    {
+        if (err) 
+        {
             console.log("ERROR: " + err);
             return ;
         } 
-        // load the hashedPassword of user
-        User.findOne({ hashedPassword: 'Ghost' }, 'name occupation', function (err, person) {
-            if (err) return handleError(err);
-            console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation) // Space Ghost is a talk show host.
-        }) 
+        curScope.hashedPassword = hash;
+        curScope.save(function(err) 
+        {
+            if (err) 
+            {
+                console.log("ERROR: " + err);
+                return ;
+            }
+        });
     });
 };
+
+
+
+userSchema.methods.verifyPassword = verifyPassword;
+
+function verifyPassword(email, password) 
+{
+    // load the hashedPassword of user
+    User.findOne({ email: email }, 'hashedPassword', function(err, user) 
+    {
+        if (err) 
+        {
+            console.log("ERROR: " + err);
+            return ;
+        } 
+
+        var hash = user.hashedPassword;
+        bcrypt.compare(password, hash, function(err) 
+        {
+            if (err) 
+            {
+                console.log("ERROR: " + err);
+                return ;
+            }
+        });
+    }); 
+}
+
+
+userSchema.statics.generateData = function(req, res) {
+    name = "Brandon Bakhshai";
+    password = "password";
+
+    var user = this({
+        name: name,
+        hashedPassword: password
+    });
+
+    user.hashAndStorePassword(password);
+
+    user.save();
+}
+
+
+userSchema.statics.getAllUsers = getAllUsers;
+
+function getAllUsers(req, res) 
+{
+    // load the hashedPassword of user
+    this.find({}).exec(function(err, users) 
+    {
+        if (err) 
+        {
+            console.log("ERROR: " + err);
+            return ;
+        } 
+
+        res.send(users);
+    }); 
+}
+
 
 // the schema is useless so far
 // we need to create a model using it

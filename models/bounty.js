@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var dbHost = 'mongodb://localhost:27017/data/db';
-mongoose.connect(dbHost);
 var Schema = mongoose.Schema;
 
 var bountySchema = new Schema({
@@ -16,19 +14,18 @@ var bountySchema = new Schema({
 });
 
 bountySchema.statics.fetchData = function(res, numberOfBounties) {
+    console.log("fetchData is running");
     this.find({})
         .limit(numberOfBounties)
-        .exec(
-            function(err, result) {
-                if (!err) {
-                    res.send(result);
-                    return true;
-                    // handle result
-                } else {
-                    return false;
-                    // error handling
-                }
-            });
+        .exec(function(err, result) 
+        {
+            if (err) {
+                console.log(err);
+                return ;
+            }
+            console.log(result);
+            res.send(result);
+        });
 };
 
 bountySchema.statics.generateData = function() {
@@ -38,12 +35,11 @@ bountySchema.statics.generateData = function() {
         var bounty = this({
             tagline: tagline,
             authors: authors
+        })
+        .save(function(err) {
+          if (err) return ;
         });
-    
-        bounty.save(function(err) {
-          if (err) throw err;
-          console.log('Bounty created!');
-        });
+      console.log('Bounty created!');
     }
 }
 
