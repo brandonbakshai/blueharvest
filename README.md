@@ -7,7 +7,20 @@ TODO
     design models
         need to decide how to securely store passwords
             bcrypt: https://www.usenix.org/legacy/events/usenix99/provos/provos_html/
+        I have a User, Bounty, now I need a Project
+            Project should probably inherit from Bounty? In that case actually
+            we can just have project be stored as an array field in Bounty.
     design more of the front end
+
+
+OVERALL DESIGN NOTE
+    We have the bounty view, now we also want to project view.
+    If we have projects stored within bounty in an array then that actually
+    makes it difficult to have a project view. 
+
+{
+
+
 
 
 
